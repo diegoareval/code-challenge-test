@@ -11,5 +11,5 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Running the previous command you'll see the outputs based on the requirements
+Running the previous command you'll see the outputs in the console based on the requirements
 
