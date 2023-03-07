@@ -50,6 +50,7 @@ class DataHandler {
    */
   show(whiteList, status) {
     const filteredData = this.filteredData(status);
+    if(filteredData.length < 1) return "No records to show"
     return filteredData.map((item) => {
       return whiteList.map((list) => {
         return {
