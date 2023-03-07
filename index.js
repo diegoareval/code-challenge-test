@@ -1,4 +1,4 @@
-// name: Diego Arevalo, march 7, 2023
+// name: Diego Arevalo, march 7, 2023 at: 3:00 PM
 
 const { data } = require('./data')
 
@@ -14,13 +14,31 @@ class DataHandler {
   }
 
   /**
-   * should filter a data according the specified status.
+   * should filter the data according the specified status.
    * @function
    * @param {string} status - Status could be Active or Inactive.
    * @returns(object[])
    */
   filteredData(status) {
     return this.data.filter((item) => item['status'] === status)
+  }
+
+  /**
+   * should sort the data according the property name.
+   * @function
+   * @param {string} propertyName - should be the property name, we want to use to sort data.
+   * @returns(object[])
+   */
+  sortByProperty(propertyName) {
+    return this.data.sort((a, b) => {
+      if (a[propertyName] < b[propertyName]) {
+        return -1
+      } else if (a[propertyName] > b[propertyName]) {
+        return 1
+      } else {
+        return 0
+      }
+    })
   }
 
   /**
@@ -31,7 +49,7 @@ class DataHandler {
    * @returns(object[])
    */
   show(whiteList, status) {
-    const filteredData = this.filteredData(status)
+    const filteredData = this.filteredData(status);
     return filteredData.map((item) => {
       return whiteList.map((list) => {
         return {
@@ -56,7 +74,14 @@ const whiteList = ['name', 'date', 'favoriteMovie']
 
 const dataHandler = new DataHandler(data)
 
-console.log('......ataching date')
+console.log(
+  '----------------------------attaching date--------------------------',
+)
 console.log(dataHandler.display())
-console.log('......filtered by active')
+console.log(
+  '----------------------------filtering by active--------------------------',
+)
 console.log(dataHandler.show(whiteList, 'Active'))
+console.log('----------------------------sorting--------------------------')
+console.log(dataHandler.sortByProperty('favoriteFood'))
+console.log('----------------------------end--------------------------')
