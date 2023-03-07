@@ -1,4 +1,4 @@
-
+const _ = require('lodash');
 let rockyObj = {
     'Name': 'Rocky',
     'Favorite Food': 'Sushi',
@@ -24,10 +24,38 @@ let rockyObj = {
     'Status': 'Active'
   }
 
+    /**
+   * should filter a data according the specified status.
+   * @function
+   * @param {object[]} o - array of objects.
+   * @returns(object[])
+   */
+  function camelCaseObject(o) {
+    let newO, origKey, value
+    if (o instanceof Array) {
+        newO = []
+        for (origKey in o) {
+            value = o[origKey]
+            if (typeof value === 'object') {
+                value = camelCaseObject(value)
+            }
+            newO.push(value)
+        }
+    } else {
+        newO = {}
+        for (origKey in o) {
+            if (o.hasOwnProperty(origKey)) {
+                newO[_.camelCase(origKey)] = o[origKey]
+            }
+        }
+    }
+    return newO
+}
+
  const fullData = [rockyObj, miroslavObj, donnyObj, mattObj];
 
 
- module.exports = {data: fullData}
+ module.exports = {data: camelCaseObject(fullData)}
 
 
 

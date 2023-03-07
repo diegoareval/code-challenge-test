@@ -20,7 +20,7 @@ class DataHandler {
    * @returns(object[])
    */
   filteredData(status) {
-    return this.data.filter((item) => item['Status'] === status)
+    return this.data.filter((item) => item['status'] === status)
   }
 
   /**
@@ -52,7 +52,7 @@ class DataHandler {
 }
 
 // array of keys that should be returned in the dataHandler.show() method
-const whiteList = ['Name', 'date', 'Favorite Movie']
+const whiteList = ['name', 'date', 'favoriteMovie']
 
 const dataHandler = new DataHandler(data)
 
