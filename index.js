@@ -33,11 +33,8 @@ class DataHandler {
     return this.data.sort((a, b) => {
       if (a[propertyName] < b[propertyName]) {
         return -1
-      } else if (a[propertyName] > b[propertyName]) {
-        return 1
-      } else {
-        return 0
       }
+      return a[propertyName] > b[propertyName] ? 1 : 0
     })
   }
 
@@ -49,8 +46,8 @@ class DataHandler {
    * @returns(object[])
    */
   show(whiteList, status) {
-    const filteredData = this.filteredData(status);
-    if(filteredData.length < 1) return "No records to show"
+    const filteredData = this.filteredData(status)
+    if (!filteredData.length) return 'No records to show'
     return filteredData.map((item) => {
       return whiteList.map((list) => {
         return {
